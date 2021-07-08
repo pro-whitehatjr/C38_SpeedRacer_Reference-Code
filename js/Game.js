@@ -35,25 +35,25 @@ class Game {
     powerCoins = new Group();
 
     // Adding fuel sprite in the game
-    this.addSpirtes(fuels, 4, fuelImage, 0.02);
+    this.addSprites(fuels, 4, fuelImage, 0.02);
 
     // Adding coin sprite in the game
-    this.addSpirtes(powerCoins, 18, powerCoinImage, 0.09);
+    this.addSprites(powerCoins, 18, powerCoinImage, 0.09);
   }
 
   // C38 TA
-  addSpirtes(spriteGroup, numberOfSprites, spirteImage, scale) {
+  addSprites(spriteGroup, numberOfSprites, spriteImage, scale) {
     for (var i = 0; i < numberOfSprites; i++) {
       var x, y;
 
       x = random(width / 2 + 150, width / 2 - 150);
       y = random(-height * 4.5, height - 400);
 
-      var spirte = createSprite(x, y);
-      spirte.addImage("spirte", spirteImage);
+      var sprite = createSprite(x, y);
+      sprite.addImage("sprite", spriteImage);
 
-      spirte.scale = scale;
-      spriteGroup.add(spirte);
+      sprite.scale = scale;
+      spriteGroup.add(sprite);
     }
   }
 
@@ -94,7 +94,7 @@ class Game {
           this.handlePowerCoins(index);
 
           // Changing camera position in y direction
-          camera.position.x = cars[index - 1].position.x
+          camera.position.x = cars[index - 1].position.x;
           camera.position.y = cars[index - 1].position.y;
         }
       }
@@ -109,7 +109,6 @@ class Game {
     }
   }
 
-  
   handleFuel(index) {
     // Adding fuel
     cars[index - 1].overlap(fuels, function(collector, collected) {
@@ -120,7 +119,6 @@ class Game {
     });
   }
 
- 
   handlePowerCoins(index) {
     cars[index - 1].overlap(powerCoins, function(collector, collected) {
       player.score += 21;
